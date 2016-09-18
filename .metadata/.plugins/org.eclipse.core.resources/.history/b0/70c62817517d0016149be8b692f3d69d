@@ -19,6 +19,7 @@ public class Driver {
 			System.out.print(myList.get(i).getLetter());
 			System.out.print(myList.get(i).getCount());
 		}
+		
 	}
 	
 	/*******************************************************************

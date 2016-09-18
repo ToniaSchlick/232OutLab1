@@ -19,12 +19,13 @@ public class Driver {
 			System.out.print(myList.get(i).getLetter());
 			System.out.print(myList.get(i).getCount());
 		}
+		piorityQueue();
 	}
 	
 	/*******************************************************************
 	 * makeArray - iterates through a char array and constructs a single 
-	 * tuple for each letter that has an occurrence in the. The tuple 
-	 * class has two instance variables, the letter and the number of
+	 * tuple for each letter that has an occurrence in the char array. The 
+	 * tuple class has two instance variables, the letter and the number of
 	 * times the letter occurs in the char array. It will then add the 
 	 * tuple to an arrayList.
 	 * -Input Parameter: char array
@@ -55,9 +56,5 @@ public class Driver {
 			}
 		}
 		return dataArray;
-//		for (int i = 0; i < dataArray.size(); i++){
-//			System.out.print(dataArray.get(i).getLetter());
-//			System.out.print(dataArray.get(i).getCount());
-		
 	}
 }
