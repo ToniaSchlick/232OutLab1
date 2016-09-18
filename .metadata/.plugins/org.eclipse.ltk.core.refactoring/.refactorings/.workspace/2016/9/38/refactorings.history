@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 27 resources" deleteContents="false" description="Delete 27 resources" element1="/_pasted_code_" element10="/Heap" element11="/HW2" element12="/IMP" element13="/Lab2_Inheritance" element14="/LinkedList" element15="/Maze" element16="/New Paint" element17="/Paint" element18="/paint.2" element19="/Palindrome" element2="/132Lab1" element20="/part1Paint" element21="/POLITICAL RIFF RAFF" element22="/Sorting" element23="/Tester" element24="/Thread" element25="/War Card Game" element26="/YaLan&apos;s" element27="/YaLan2" element3="/Baloon" element4="/CommonDivisor" element5="/DiscreteHomework 4" element6="/Egcd" element7="/ExamQuestion" element8="/FibRec" element9="/gui" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="27" stamp="1473960270000"/>
+</session>

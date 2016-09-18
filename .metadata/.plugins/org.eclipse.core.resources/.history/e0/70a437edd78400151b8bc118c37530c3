@@ -1,0 +1,81 @@
+import javax.swing.JOptionPane;
+
+public class Main {
+	
+	
+	static int bComp;
+	static int bCopy;
+	static int iComp;
+	static int iCopy;
+	static int size;
+
+	static int[] stuff;
+	
+	public static void main(String[] args) {
+		
+		size = Integer.parseInt(JOptionPane.showInputDialog("Please input array size"));		
+        stuff = new int[size];	
+//        
+//        for (int i = 0; i < stuff.length; i++){			
+//            stuff[i] = new Integer ((int) (Math.random() * size));
+//        }
+//        
+//		System.out.println("Bubble Sort:");
+//        long start = System.currentTimeMillis();
+//        bubbleSort(stuff);
+//        System.out.printf("The time in milliseconds to sort %d items was: %d \n", size,  System.currentTimeMillis() - start);
+//        System.out.printf("%d Comparisons and %d Copies", bComp, bCopy);
+        
+        for (int i = 0; i < stuff.length; i++){			
+            stuff[i] = new Integer ((int) (Math.random() * size));
+        }
+        insertionSort(stuff);
+		System.out.println("InsertionSort:");
+        long start = System.currentTimeMillis();
+        System.out.printf("The time in milliseconds to sort %d items was: %d \n", size,  System.currentTimeMillis() - start);
+        System.out.printf("%d Comparisons and %d Copies", iComp, iCopy);   
+	}	
+	
+	static void bubbleSort(int[] stuff){
+		
+		int n = stuff.length;
+		int temp = 0;
+		
+	    for(int i=0; i < n; i++){
+	           for(int j=1; j < (n-i); j++){
+	        	   bComp ++;	        	   
+	        	   if(stuff[j-1] > stuff[j]){	
+	        		   bCopy ++;
+	        		   temp = stuff[j-1];
+	        		   stuff[j-1] = stuff[j];
+	        		   stuff[j] = temp;	                         
+	                  }
+	           }
+	    }
+	}
+	
+	static void insertionSort(int[] stuff){
+		for (int i = 0; i < stuff.length; i++){			
+            stuff[i] = new Integer ((int) (Math.random() * size));
+        }
+		
+		int n = stuff.length;
+		int temp;
+		
+		for(int i=1; i < n; i++){
+			temp = stuff[i];
+     	    iCopy ++;
+     	    iComp ++;
+	   		for(int j=i-1; j >= 0 &&  temp < stuff[j] ; j--){   			
+	   			for (int k = i; k>0; k--){
+		   			stuff[k] = stuff[k-1];
+		   			iComp ++;
+		   			iCopy ++;
+	   			}
+	   			stuff[i-(j+1)] = temp;
+	   			iCopy ++;
+	   		}
+		}		
+	}
+
+}

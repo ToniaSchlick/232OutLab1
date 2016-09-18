@@ -1,0 +1,28 @@
+import java.util.PriorityQueue;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		
+		
+		// Get Message
+		Scanner input = new Scanner(System.in);
+	    System.out.print("Input text message: ");
+	    String message = input.nextLine();
+		
+		// Convert the string to MessageChar array
+		char[] messageChar = message.toCharArray();
+		System.out.println(message);
+		System.out.println(messageChar[2]);
+		// Function that recursively counts each occurrence of each char in the messageChar array
+		//
+		
+		//
+		
+		
+	}
+
+}

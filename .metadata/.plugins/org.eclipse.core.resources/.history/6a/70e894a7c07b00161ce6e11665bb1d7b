@@ -1,0 +1,11 @@
+
+public class Tuple {
+ private char presentChar;
+ private int charCount;
+ 
+ public Tuple(char character, int count){
+	 presentChar = character;
+	 charCount = count;
+ }
+ 
+}

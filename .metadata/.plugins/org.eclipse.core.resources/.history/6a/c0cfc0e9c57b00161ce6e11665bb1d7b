@@ -1,0 +1,58 @@
+import java.util.PriorityQueue;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		
+		
+		// Get Message
+		Scanner input = new Scanner(System.in);
+	    System.out.print("Input text message: ");
+	    String message = input.nextLine();
+		
+		// Convert the string to MessageChar array
+		char[] messageChar = message.toCharArray();
+		
+//		System.out.println(message);
+//		System.out.println(messageChar[2]);
+		System.out.println(messageChar.length);
+		
+		makeArray(messageChar);
+		
+		
+		// Function that recursively counts each occurrence of each char in the messageChar array
+			
+	}
+	
+	public static void makeArray(char [] messageChar){
+		ArrayList<Tuple> dataArray = new ArrayList<Tuple>();
+		Tuple myTuple;
+		System.out.println("1");
+		for (int i = 0; i < messageChar.length; i++){
+			System.out.println(i + "Step one");
+			int count = 0;
+			int j = 0;
+			for(j = 0; j < messageChar.length; j++){
+				if (messageChar[i] == dataArray.get(j).getLetter()){
+					return;
+				}
+				else{
+					for(j = 0; j < messageChar.length; j++ )
+						if (messageChar[i] == messageChar[j]){
+							count ++;
+						}	
+					}
+				}
+			myTuple = new Tuple (messageChar[i], count);
+			dataArray.add(myTuple);
+		}
+		for (int i = 0; i < dataArray.size(); i++){
+			System.out.print(dataArray.get(i));
+		}
+	}
+
+}
