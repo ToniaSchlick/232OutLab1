@@ -32,16 +32,17 @@ public class Driver{
 		// string and creates a hash map that will be the key for compressing 
 		// and uncompressing a message
 		makeKey(huffmanRoot, key);
+//		printCompressedMessage(messageChar);
 	/*********************************************************************/
 		
-//		System.out.println("Enter the corisponding letter to the action you wish to proform, ");
+//		System.out.println("Enter the corresponding letter to the action you wish to perform, ");
 //		int choice = getChar();
 //		while(true){
 //			System.out.println(" c - compress message, u - uncompressed message, t - tree or n - new message: ");
 //			int choice = getChar();
 //			switch(choice){
 //			case 'c':
-//				printCompressedMessage();
+//				printCompressedMessage(messageChar);
 //				break;
 //			case 'u':
 //				printUnCompMessage;
@@ -66,7 +67,7 @@ public class Driver{
 //  * * Returns: series of strings.
 //  *****************************************************************************
 //  */ public void newMessage(){	    
-//		System.out.print("Enter message followed by a # symble ");
+//		System.out.print("Enter message followed by a # symbol ");
 //		
 //		/* code to get input */
 //		
@@ -186,6 +187,9 @@ public class Driver{
 		while (sortedList.size() > 2){			
 			sortedList.add (new Node (sortedList.poll(), sortedList.poll()));
 		}
+		if (sortedList.size() == 1){
+			return new Node(sortedList.poll());
+		}
 		return new Node(sortedList.poll(), sortedList.poll());
 	}
  	///////////////////End of Function genHuffman/////////////////////////////	
@@ -195,10 +199,9 @@ public class Driver{
   * make a string of 0's and 1's that represent each character in the given 
   * message [] 
   * * Requires Parameter: char []
-  * * Returns: char []
   *****************************************************************************
   */
- 
+ 	
  	////////////////End of Function printCompressedMessage/////////////////////
  
  /*****************************************************************************
