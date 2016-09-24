@@ -11,6 +11,7 @@ import java.util.PriorityQueue;
 public class Driver{
 	static Map<Character, String> myKey = new HashMap<Character, String>();
 	static String key = ""; // Will be sent in as a parameter to the makeKey function
+	static Map<String, Character> deCodeKey = new HashMap<String, Character>();
 	
 	public static void main(String[] args) throws IOException{		
 	/* Will be replaced by newMessage()
@@ -32,7 +33,8 @@ public class Driver{
 		// string and creates a hash map that will be the key for compressing 
 		// and uncompressing a message
 		makeKey(huffmanRoot, key);
-//		printCompressedMessage(messageChar);
+		System.out.println(printCompressedMessage(messageChar));
+		System.out.println(printUnCompMessage(messageChar));
 	/*********************************************************************/
 		
 //		System.out.println("Enter the corresponding letter to the action you wish to perform, ");
@@ -42,7 +44,7 @@ public class Driver{
 //			int choice = getChar();
 //			switch(choice){
 //			case 'c':
-//				printCompressedMessage(messageChar);
+//				System.out.println(printCompressedMessage(messageChar));
 //				break;
 //			case 'u':
 //				printUnCompMessage;
@@ -127,6 +129,7 @@ public class Driver{
 		if (myNode.getLeftChild() == null){
 			System.out.println("{" + myNode.getLetter() + ", " + key + "}"); // will print the Key
 			myKey.put(myNode.getLetter(), key);
+			deCodeKey.put(key, myNode.getLetter());
 			return;
 		}
 		makeKey(myNode.getLeftChild(), key + "0");		
@@ -200,8 +203,13 @@ public class Driver{
   * message [] 
   * * Requires Parameter: char []
   *****************************************************************************
-  */
- 	
+  */public static String printCompressedMessage(char [] myArry){
+		String myString = "";
+		for (char i : myArry){
+			myString = myString + myKey.get(i);
+		}
+		return myString;
+	}	
  	////////////////End of Function printCompressedMessage/////////////////////
  
  /*****************************************************************************
@@ -211,7 +219,22 @@ public class Driver{
   * * Requires Parameter: String
   * * Returns: char []
   *****************************************************************************
-  */
+  */public static String printUnCompMessage(char [] myArry){
+	  String frontString = "";
+	  String reconString = "";
+	  String compString = printCompressedMessage(myArry);
+	  String remainingString = compString;
+	  while (remainingString.length()>0){
+		  frontString = frontString + remainingString.substring(0,1);
+		  remainingString = remainingString.substring(1);		   
+		  if (deCodeKey.get(frontString) != null){
+			  reconString = reconString + deCodeKey.get(frontString);
+			  frontString = "";
+		  }
+	  
+	  }
+	  return reconString;
+  }
 
  	////////////////End of Function printUnCompMessage/////////////////////////
  
