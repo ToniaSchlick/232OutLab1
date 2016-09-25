@@ -1,3 +1,6 @@
+ 
+package huffmancoding;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -15,48 +18,38 @@ public class Driver{
 	public static void main(String[] args) throws IOException{		
 	/* Will be replaced by newMessage()
 	****************************************************************/
-		Scanner input = new Scanner(System.in);
-	    System.out.print("Input text message: ");
-	    String message = input.nextLine();
-		// Convert the string to MessageChar array
-	    char[] messageChar = message.toCharArray();
-	    // Takes messageChar [] and makes an ArrayList of Nodes
-		ArrayList<Node> myNodes = establishNodes(messageChar);		
-		// Takes an ArrayList of Nodes and makes a PriorityQueue of Nodes 
-		// that is ordered by the each Nodes count instance variable from 
-		// largest to smallest.
-		PriorityQueue<Node> sortedNodes = new PriorityQueue<Node> (myNodes);		
-		// Takes a Ordered Priority Queue and creates a Huffman structure Node
-		Node huffmanRoot = genHuffman(sortedNodes);		
-		// Takes a Node that is the root of a Huffman structure and and an empty
-		// string and creates a hash map that will be the key for compressing 
-		// and uncompressing a message
-		makeKey(huffmanRoot, key);
+	newMessage();
 	/*********************************************************************/
 		
-//		System.out.println("Enter the corisponding letter to the action you wish to proform, ");
-//		int choice = getChar();
-//		while(true){
-//			System.out.println(" c - compress message, u - uncompressed message, t - tree or n - new message: ");
-//			int choice = getChar();
-//			switch(choice){
-//			case 'c':
-//				printCompressedMessage();
-//				break;
-//			case 'u':
-//				printUnCompMessage;
-//				break;
-//			case 't':
-//				printHuffmanStruct;
-//				break;
-//			case 'n':
-//				newMessage();
-//				break;
-//			default:
-//				System.out.print("Invalid entry\n");
-//			
-//			}
-//		}
+		System.out.println("Enter the corisponding letter to the action you wish to proform, ");
+     
+                       Scanner menu = new Scanner(System.in);
+                       String choice ="";
+                       boolean run =true;
+                       while(run){
+			System.out.println(" c - compress message, u - uncompressed message, t - tree, n - new message, or q for quit: ");
+			 choice = menu.next();
+			switch(choice){
+			case "c":
+				printCompressedMessage();
+				break;
+			case "u":
+				printUnCompMessage();
+				break;
+			case "t": 
+				break;
+			case "n":
+				newMessage();
+				break;
+                        case "q":
+                                 run=false;
+                                 break;
+                            
+			default:
+				System.out.print("Invalid entry\n");
+			
+			}
+		}
 }
 	////////////////////////////End of main///////////////////////////////////
 
@@ -65,30 +58,51 @@ public class Driver{
 //  * lines of text. The message will be submitted upon the input of a # symbol
 //  * * Returns: series of strings.
 //  *****************************************************************************
-//  */ public void newMessage(){	    
-//		System.out.print("Enter message followed by a # symble ");
-//		
-//		/* code to get input */
-//		
-//		// Convert the string to MessageChar array
-//	    char[] messageChar = message.toCharArray();
-//	    
-//	    // Takes messageChar [] and makes an ArrayList of Nodes
-//		ArrayList<Node> myNodes = establishNodes(messageChar);
-//		
-//		// Takes an ArrayList of Nodes and makes a PriorityQueue of Nodes 
-//		// that is ordered by the each Nodes count instance variable from 
-//		// largest to smallest.
-//		PriorityQueue<Node> sortedNodes = new PriorityQueue<Node> (myNodes);
-//		
-//		// Takes a Ordered Priority Queue and creates a Huffman structure Node
-//		Node huffmanRoot = genHuffman(sortedNodes);
-//		
-//		// Takes a Node that is the root of a Huffman structure and and an empty
-//		// string and creates a hash map that will be the key for compressing 
-//		// and uncompressing a message
-//		makeKey(huffmanRoot, key);
-//	}
+              public static void newMessage(){	    
+        	System.out.print("Enter message or '#' symble to end message ");
+                Scanner input = new Scanner(System.in);
+                String message = "";
+                
+                while(input.hasNext())
+                {
+                 message += input.nextLine() + "\n"; 
+                 if (message.contains("#"))
+                 {
+                     message= message.substring(0, message.length()-2);
+                     break;
+                 }
+                }
+                
+                if(message.equals(""))
+                {
+                    System.out.println("Goodby");
+                    return;
+                }
+               
+                
+                
+		
+	
+	
+//	 Convert the string to MessageChar array
+	    char[] messageChar = message.toCharArray();
+	    
+	    // Takes messageChar [] and makes an ArrayList of Nodes
+		ArrayList<Node> myNodes = establishNodes(messageChar);
+		
+		// Takes an ArrayList of Nodes and makes a PriorityQueue of Nodes 
+		// that is ordered by the each Nodes count instance variable from 
+		// largest to smallest.
+		PriorityQueue<Node> sortedNodes = new PriorityQueue<Node> (myNodes);
+		
+		// Takes a Ordered Priority Queue and creates a Huffman structure Node
+		Node huffmanRoot = genHuffman(sortedNodes);
+		
+		// Takes a Node that is the root of a Huffman structure and and an empty
+		// string and creates a hash map that will be the key for compressing 
+		// and uncompressing a message
+		makeKey(huffmanRoot, key);
+	}
   	///////////////////////End of Function newMessage////////////////////////////
 
 /*****************************************************************************
@@ -190,34 +204,20 @@ public class Driver{
 	}
  	///////////////////End of Function genHuffman/////////////////////////////	
  
- /*****************************************************************************
-  * Function printCompressedMessage: This Function uses the hash map key to 
-  * make a string of 0's and 1's that represent each character in the given 
-  * message [] 
-  * * Requires Parameter: char []
-  * * Returns: char []
-  *****************************************************************************
-  */
+          public static void printCompressedMessage()
+          {
+              
+          }
  
- 	////////////////End of Function printCompressedMessage/////////////////////
+ 	////////////////End of Function printCompressedMessage/////////////////
  
- /*****************************************************************************
-  * Function printUnCompMessage: This Function uses the hash map key to 
-  * uncompress the string of 0's and 1's that represent each character back 
-  * to characters
-  * * Requires Parameter: String
-  * * Returns: char []
-  *****************************************************************************
-  */
+         public static void  printUnCompMessage()
+         {
+             
+         }
+ 
 
  	////////////////End of Function printUnCompMessage/////////////////////////
  
- /*****************************************************************************
-  * Function printHuffmanStruct: This Function prints the tree that is the 
-  * Huffman structure.
-  * * Requires Parameter: huffmanRoot Node
-  * * Returns: series of strings.
-  *****************************************************************************
-  */
- 	/////////////////End of Function printHuffmanStruct////////////////////////
+
 }
