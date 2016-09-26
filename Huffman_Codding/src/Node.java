@@ -33,18 +33,22 @@ class Node implements Comparable<Node>{
 		System.out.print(count);
 		System.out.print("} ");
 	}
+	
 	public char getLetter(){
 		 return letter;
-	 }
-	 public int getCount(){
-		 return count;
-	 } 
-	 public Node getLeftChild(){
-		 return leftChild;
-	 }
-	 public Node getRightChild(){
-		 return rightChild;
-	 }
+	}
+	
+	public int getCount(){
+		return count;
+	} 
+	
+	public Node getLeftChild(){
+		return leftChild;
+	}
+	
+	public Node getRightChild(){
+		return rightChild;
+	}
 	 
 	@Override
 	public int compareTo(Node o) { 
