@@ -17,6 +17,15 @@ class Node implements Comparable<Node>{
 		count = left.getCount() + right.getCount();
 	}
 	
+	public Node(Node left){
+		leftChild = left;
+		count = left.getCount();
+	}
+	
+	public void setLeftChild(Node left){
+		leftChild = left;
+	}
+	
 	public void displayNode(){	
 		System.out.print('{');
 		System.out.print(letter);

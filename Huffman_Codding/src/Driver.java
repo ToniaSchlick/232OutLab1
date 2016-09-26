@@ -14,10 +14,12 @@ import java.util.PriorityQueue;
 public class Driver{
 	static Map<Character, String> myKey = new HashMap<Character, String>();
 	static String key = ""; // Will be sent in as a parameter to the makeKey function
+	static Map<String, Character> deCodeKey = new HashMap<String, Character>();
 	
 	public static void main(String[] args) throws IOException{		
 	/* Will be replaced by newMessage()
 	****************************************************************/
+<<<<<<< HEAD
 	newMessage();
 	/*********************************************************************/
 		
@@ -50,6 +52,7 @@ public class Driver{
 			
 			}
 		}
+
 }
 	////////////////////////////End of main///////////////////////////////////
 
@@ -58,6 +61,7 @@ public class Driver{
 //  * lines of text. The message will be submitted upon the input of a # symbol
 //  * * Returns: series of strings.
 //  *****************************************************************************
+
               public static void newMessage(){	    
         	System.out.print("Enter message or '#' symble to end message ");
                 Scanner input = new Scanner(System.in);
@@ -103,6 +107,7 @@ public class Driver{
 		// and uncompressing a message
 		makeKey(huffmanRoot, key);
 	}
+
   	///////////////////////End of Function newMessage////////////////////////////
 
 /*****************************************************************************
@@ -140,6 +145,7 @@ public class Driver{
 		if (myNode.getLeftChild() == null){
 			System.out.println("{" + myNode.getLetter() + ", " + key + "}"); // will print the Key
 			myKey.put(myNode.getLetter(), key);
+			deCodeKey.put(key, myNode.getLetter());
 			return;
 		}
 		makeKey(myNode.getLeftChild(), key + "0");		
@@ -200,22 +206,53 @@ public class Driver{
 		while (sortedList.size() > 2){			
 			sortedList.add (new Node (sortedList.poll(), sortedList.poll()));
 		}
+		if (sortedList.size() == 1){
+			return new Node(sortedList.poll(),sortedList.poll());
+		}
 		return new Node(sortedList.poll(), sortedList.poll());
 	}
  	///////////////////End of Function genHuffman/////////////////////////////	
  
-          public static void printCompressedMessage()
-          {
-              
-          }
+
+ /*****************************************************************************
+  * Function printCompressedMessage: This Function uses the hash map key to 
+  * make a string of 0's and 1's that represent each character in the given 
+  * message [] 
+  * * Requires Parameter: char []
+  *****************************************************************************
+  */public static String printCompressedMessage(char [] myArry){
+		String myString = "";
+		for (char i : myArry){
+			myString = myString + myKey.get(i);
+		}
+		return myString;
+	}	
+ 	////////////////End of Function printCompressedMessage/////////////////////
  
- 	////////////////End of Function printCompressedMessage/////////////////
- 
-         public static void  printUnCompMessage()
-         {
-             
-         }
- 
+ /*****************************************************************************
+  * Function printUnCompMessage: This Function uses the hash map key to 
+  * uncompress the string of 0's and 1's that represent each character back 
+  * to characters
+  * * Requires Parameter: String
+  * * Returns: char []
+  *****************************************************************************
+  */public static String printUnCompMessage(char [] myArry){
+	  String frontString = "";
+	  String reconString = "";
+	  String compString = printCompressedMessage(myArry);
+	  String remainingString = compString;
+	  while (remainingString.length()>0){
+		  frontString = frontString + remainingString.substring(0,1);
+		  remainingString = remainingString.substring(1);		   
+		  if (deCodeKey.get(frontString) != null){
+			  reconString = reconString + deCodeKey.get(frontString);
+			  frontString = "";
+		  }
+	  
+	  }
+	  return reconString;
+  }
+
 
  	////////////////End of Function printUnCompMessage/////////////////////////
  
