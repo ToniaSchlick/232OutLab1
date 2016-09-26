@@ -15,11 +15,12 @@ public class Driver{
 	static Map<Character, String> myKey = new HashMap<Character, String>();
 	static String key = ""; // Will be sent in as a parameter to the makeKey function
 	static Map<String, Character> deCodeKey = new HashMap<String, Character>();
+        static char[] messageChar;
 	
 	public static void main(String[] args) throws IOException{		
 	/* Will be replaced by newMessage()
 	****************************************************************/
-<<<<<<< HEAD
+
 	newMessage();
 	/*********************************************************************/
 		
@@ -33,10 +34,11 @@ public class Driver{
 			 choice = menu.next();
 			switch(choice){
 			case "c":
-				printCompressedMessage();
-				break;
+                            System.out.println(printCompressedMessage(messageChar));
+                            break;
 			case "u":
-				printUnCompMessage();
+                                System.out.println(printUnCompMessage(messageChar));
+			
 				break;
 			case "t": 
 				break;
@@ -79,7 +81,7 @@ public class Driver{
                 
                 if(message.equals(""))
                 {
-                    System.out.println("Goodby");
+                    System.out.println("Message was empty,back to main menu");
                     return;
                 }
                
@@ -89,7 +91,7 @@ public class Driver{
 	
 	
 //	 Convert the string to MessageChar array
-	    char[] messageChar = message.toCharArray();
+	     messageChar = message.toCharArray();
 	    
 	    // Takes messageChar [] and makes an ArrayList of Nodes
 		ArrayList<Node> myNodes = establishNodes(messageChar);
