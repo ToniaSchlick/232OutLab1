@@ -1,5 +1,3 @@
-
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,19 +5,24 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.PriorityQueue;
 
-/*****************************************************************************
- * Main Function: 
- *****************************************************************************
- */
 public class Driver {
-
+/*****************************************************************************
+ * Tonia Schlick
+ * Brendan Blanchard
+ * Resources: 	Oracle Java Docs, 
+ * 				Stack Overflow: http://stackoverflow.com/a/20645269 
+ * ****************************************************************************
+ */
     static Map<Character, String> myKey = new HashMap<Character, String>();
     static String key = ""; // Will be sent in as a parameter to the makeKey function
     static Map<String, Character> deCodeKey = new HashMap<String, Character>();
     static char[] messageChar;
     static Node huffmanRoot;
-
-    public static void main(String[] args) throws IOException {
+    
+/*****************************************************************************
+ * Main Function: 
+ *****************************************************************************
+ */	public static void main(String[] args) throws IOException {
         newMessage();
         System.out.println("Enter the corisponding letter to the action you wish to preform, ");
         Scanner menu = new Scanner(System.in);
@@ -101,10 +104,18 @@ public class Driver {
  * ****************************************************************************
  */	public static void makeKey(Node myNode, String key) {
         if (myNode.getLeftChild() == null) {
-//            System.out.println("{" + myNode.getLetter() + ", " + key + "}"); // will print the Key
-            myKey.put(myNode.getLetter(), key);
-            deCodeKey.put(key, myNode.getLetter());
-            return;
+        	if(myNode.getLetter() == '\n'){
+        		System.out.println("{\\n, " + key + "}"); // will print \n in place of literal return
+        	}
+        	else if(myNode.getLetter() == ' '){
+        		System.out.println("{\\s, " + key + "}"); //will print \s in place of literal space
+        	}
+        	else{
+        		System.out.println("{" + myNode.getLetter() + ", " + key + "}"); // will print the Key
+        	}
+        	myKey.put(myNode.getLetter(), key);
+        	deCodeKey.put(key, myNode.getLetter());
+        	return;
         }
         makeKey(myNode.getLeftChild(), key + "0");
         if (myNode.getRightChild() == null) {
@@ -164,8 +175,8 @@ public class Driver {
         while (sortedList.size() > 2) {
             sortedList.add(new Node(sortedList.poll(), sortedList.poll()));
         }
-        if (sortedList.size() == 1) {
-            return new Node(sortedList.poll(), sortedList.poll());
+        if (sortedList.size() == 1) {// case of single character message
+            return sortedList.poll();
         }
         return new Node(sortedList.poll(), sortedList.poll());
     }//End of Function genHuffman
@@ -236,7 +247,15 @@ public class Driver {
  * Required Parameter: Node
  * ***************************************************************************
  */	public static String getInsideNode(Node node){
-        try {
+        try {       	
+        	if (node.getLetter() == '\n'){ // will print \n in place of literal return
+        		String x = "\\n";
+        		return x + Integer.toString(node.getCount());
+        	}
+        	if (node.getLetter() == ' '){ // will print \s in place of literal space
+        		String x = "\\s";
+        		return x + Integer.toString(node.getCount());
+        	}
             return Character.toString(node.getLetter()) + Integer.toString(node.getCount());     
         } catch (Exception e) {
     		return Integer.toString(node.getCount());

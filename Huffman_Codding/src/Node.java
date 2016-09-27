@@ -4,6 +4,7 @@ class Node implements Comparable<Node>{
 	public Node leftChild; // this node's left child
 	public Node rightChild; // this node's right child
 	
+	//This is used for leaf nodes
 	public Node(char myLetter, int myCount){
 		letter = myLetter;
 		count = myCount;
@@ -11,15 +12,11 @@ class Node implements Comparable<Node>{
 		rightChild = null;
 	}
 	
+	//This is used for parent nodes 
 	public Node(Node left, Node right){
 		leftChild = left;
 		rightChild = right;
 		count = left.getCount() + right.getCount();
-	}
-	
-	public Node(Node left){
-		leftChild = left;
-		count = left.getCount();
 	}
 	
 	public void setLeftChild(Node left){
